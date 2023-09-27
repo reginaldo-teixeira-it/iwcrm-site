@@ -36,9 +36,6 @@ import { HttpClientModule } from '@angular/common/http';
     })
 
   ],
-  // providers: [
-  //   {provide:APP_BASE_HREF, useValue:'/'}
-  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

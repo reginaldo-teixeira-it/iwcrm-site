@@ -1,0 +1,26 @@
+.login-title {
+  display: inline-block;
+  vertical-align: middle;
+  align-items: center;
+  margin-left: 40%; /* Ajuste isso conforme necessário para o espaçamento desejado */
+}
+.login-sub-title {
+  display: inline-block;
+  vertical-align: middle;
+  align-items: center;
+  margin-left: 32%; /* Ajuste isso conforme necessário para o espaçamento desejado */
+}
+
+.login-card-button {
+  display: inline-block;
+  vertical-align: middle;
+  align-items: center;
+  margin-left: 32%; /* Ajuste isso conforme necessário para o espaçamento desejado */
+}
+
+.login-sub-pass {
+  display: inline-block;
+  vertical-align: middle;
+  align-items: center;
+  margin-left: 8%; /* Ajuste isso conforme necessário para o espaçamento desejado */
+}

@@ -11,6 +11,11 @@ import { LoggerModule } from 'ngx-logger';
 import { environment } from '../environments/environment';
 
 import { HttpClientModule } from '@angular/common/http';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 //import { APP_BASE_HREF } from '@angular/common';
 // import { registerLocaleData } from '@angular/common';
 // import localePt from '@angular/common/locales/pt';
@@ -33,7 +38,12 @@ import { HttpClientModule } from '@angular/common/http';
       serverLoggingUrl: `http://my-api/logs`,
       level: environment.logLevel,
       serverLogLevel: environment.serverLogLevel
-    })
+    }),
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule
 
   ],
   bootstrap: [AppComponent]

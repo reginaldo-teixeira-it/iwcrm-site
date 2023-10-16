@@ -19,6 +19,11 @@ const approutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'dashboard',
+    loadChildren: () => import('./features/navigation/dashboard/dashboard.component').then(m => m.DashboardComponent),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'tools-list',
     loadChildren: () => import('./features/tools/tools.module').then(m => m.ToolsModule),
     canActivate: [AuthGuard]

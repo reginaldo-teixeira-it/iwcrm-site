@@ -1,9 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay, map } from 'rxjs/operators';
-import * as jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
-
 import { environment } from '../../../environments/environment';
 import { of, EMPTY } from 'rxjs';
 
@@ -20,20 +18,20 @@ export class AuthenticationService {
     login(email: string, password: string) {
         return of(true)
             .pipe(delay(1000),
-                map((/*response*/) => {
+                map((response) => {
                     // set token property
-                    //const decodedToken = jwt_decode(response['token']);
-
+                   // const decodedToken = jwt_decode(response['token']);
+                    console.log(response);
                     // store email and jwt token in local storage to keep user logged in between page refreshes
-                    this.localStorage.setItem('currentUser', JSON.stringify({
-                        token: 'aisdnaksjdn,axmnczm',
-                        isAdmin: true,
-                        email: 'dev.mail@infowest.com.br',
-                        id: '1077',
-                        alias: 'dev.mail@infowest.com.br'.split('@')[0],
-                        expiration: moment().add(1, 'days').toDate(),
-                        fullName: 'Reginaldo Teixeira'
-                    }));
+                    // this.localStorage.setItem('currentUser', JSON.stringify({
+                    //     token: 'aisdnaksjdn,axmnczm',
+                    //     isAdmin: true,
+                    //     email: 'dev.mail@infowest.com.br',
+                    //     id: '1077',
+                    //     alias: 'dev.mail@infowest.com.br'.split('@')[0],
+                    //     expiration: moment().add(1, 'days').toDate(),
+                    //     fullName: 'Reginaldo Teixeira'
+                    // }));
 
                     return true;
                 }));

@@ -3,8 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from 'src/app/shared/layout/layout.component';
 
 import { HomeComponent } from 'src/app/features/navigation/home/home.component';
-
-
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -12,6 +11,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: HomeComponent },
+      { path: 'dashboard', component: DashboardComponent },
     ]
   }
 ];

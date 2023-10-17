@@ -20,7 +20,12 @@ const approutes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./features/navigation/dashboard/dashboard.component').then(m => m.DashboardComponent),
+    loadChildren: () => import('./features/navigation/dashboard/dashboard.routing.module').then(m => m.DashboardRoutingModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./features/user/user-routing.module').then(m => m.UserRoutingModule),
     canActivate: [AuthGuard]
   },
   {

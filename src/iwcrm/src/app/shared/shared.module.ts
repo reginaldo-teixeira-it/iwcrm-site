@@ -17,7 +17,8 @@ import { LayoutComponent } from './layout/layout.component';
         CustomMaterialModule,
         FormsModule,
         ReactiveFormsModule,
-        FlexLayoutModule,
+        FlexLayoutModule
+
     ],
     declarations: [
         ConfirmDialogComponent,

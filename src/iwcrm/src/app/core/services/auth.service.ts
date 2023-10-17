@@ -19,7 +19,6 @@ const httpOptions = {
 })
 
 export class AuthenticationService {
-
     constructor(private http: HttpClient,
         @Inject('LOCALSTORAGE') private localStorage: Storage) {
     }

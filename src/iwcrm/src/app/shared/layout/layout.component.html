@@ -58,29 +58,36 @@
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenav">
 
       <mat-nav-list>
-        <h3 mat-subheader>Home</h3>
+        <h3 mat-subheader>Principal</h3>
 
         <a class="menu-item" mat-list-item [routerLink]="['/home']" routerLinkActive="active" style="margin-top: 3%;">
           <mat-icon mat-list-icon>
-            dashboard
+            home
           </mat-icon>
-          <p class="menu-item" mat-line menu-text> Dashboard </p>
+          <p class="menu-item" mat-line menu-text> Home </p>
         </a>
 
         <a class="menu-item" mat-list-item [routerLink]="['/person-list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
-            group_add
+            groups
           </mat-icon>
           <p class="menu-item" mat-line> Cadastros </p>
         </a>
 
         <a class="menu-item" mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">
           <mat-icon mat-list-icon>
+            dashboard
+          </mat-icon>
+          <p class="menu-item" mat-line> Dashboard </p>
+        </a>
+        <mat-divider></mat-divider><br>
+        <!-- <h3 mat-subheader>Controle de Acessos</h3> -->
+        <a class="menu-item" mat-list-item [routerLink]="['/users']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
             group_add
           </mat-icon>
-          <p class="menu-item" mat-line> Dash2 </p>
+          <p class="menu-item" mat-line>Usuários </p>
         </a>
-
         <mat-divider></mat-divider>
 
         <h3 mat-subheader>Resources</h3>
@@ -91,7 +98,6 @@
           </mat-icon>
           <p  class="menu-item" mat-line> Ferramentas </p>
         </a>
-
 
         <a class="menu-item" id="push-bottom" mat-list-item [routerLink]="['/about']" routerLinkActive="active">
           <mat-icon mat-list-icon>

@@ -38,6 +38,7 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { ThemePalette } from '@angular/material/core';
 
 
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD MMM YYYY',
@@ -61,7 +62,7 @@ export const MY_FORMATS = {
     MatAutocompleteModule, MatTableModule, MatDialogModule, MatTabsModule,
     MatTooltipModule, MatSelectModule, MatPaginatorModule, MatChipsModule,
     MatButtonToggleModule, MatSlideToggleModule, MatBadgeModule, MatCheckboxModule,
-    MatExpansionModule, DragDropModule, MatSortModule
+    MatExpansionModule, DragDropModule, MatSortModule,MatMenuModule
   ],
   exports: [
     CommonModule,

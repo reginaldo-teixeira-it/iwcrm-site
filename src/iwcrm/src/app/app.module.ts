@@ -11,11 +11,13 @@ import { LoggerModule } from 'ngx-logger';
 import { environment } from '../environments/environment';
 
 import { HttpClientModule } from '@angular/common/http';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { UserListComponent } from './features/user/user-list/user-list.component';
+// import { MatGridListModule } from '@angular/material/grid-list';
+// import { MatCardModule } from '@angular/material/card';
+// import { MatMenuModule } from '@angular/material/menu';
+// import { MatIconModule } from '@angular/material/icon';
+// import { MatButtonModule } from '@angular/material/button';
+
 //import { APP_BASE_HREF } from '@angular/common';
 // import { registerLocaleData } from '@angular/common';
 // import localePt from '@angular/common/locales/pt';
@@ -24,7 +26,8 @@ import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,11 +42,11 @@ import { MatButtonModule } from '@angular/material/button';
       level: environment.logLevel,
       serverLogLevel: environment.serverLogLevel
     }),
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule
+    // MatGridListModule,
+    // MatCardModule,
+    // MatMenuModule,
+    // MatIconModule,
+    // MatButtonModule
 
   ],
   bootstrap: [AppComponent]

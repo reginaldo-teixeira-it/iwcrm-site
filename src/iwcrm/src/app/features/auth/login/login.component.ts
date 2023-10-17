@@ -57,7 +57,20 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['/home']);
                 },
                 error => {
-                    this.notificationService.openSnackBar(error.error);
+                  let message="";
+                  var result;
+                    const errorObj = JSON.parse(error);
+                    if (errorObj.hasOwnProperty("errorMessage"))
+                    {
+                      result = JSON.stringify(error['error']['errorMessage']);
+                      if(result.length > 0 )
+                      {
+                        message = result.replace('"','').replace('"','').trim().trimStart().trimEnd();
+                      }
+                    }
+
+                    console.log('Retorno : '+result);
+                    this.notificationService.openSnackBar(message);
                     this.loading = false;
                 }
             );

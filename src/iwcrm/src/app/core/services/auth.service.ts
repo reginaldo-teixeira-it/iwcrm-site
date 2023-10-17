@@ -1,10 +1,19 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { delay, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { environment } from '../../../environments/environment';
-import { of, EMPTY } from 'rxjs';
+import { of, EMPTY, Observable } from 'rxjs';
+import jwt_decode from 'jwt-decode';
+import { jsDocComment } from '@angular/compiler';
+import { JsonPipe } from '@angular/common';
 
+const DEV = 'https://localhost:7234/v1/account/';
+const PRD = 'https://iwcrm.azurewebsites.net//v1/account/';
+const AUTH_API = DEV;
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
     providedIn: 'root'
 })
@@ -15,26 +24,45 @@ export class AuthenticationService {
         @Inject('LOCALSTORAGE') private localStorage: Storage) {
     }
 
-    login(email: string, password: string) {
-        return of(true)
-            .pipe(delay(1000),
-                map((response) => {
-                    // set token property
-                   // const decodedToken = jwt_decode(response['token']);
-                    console.log(response);
-                    // store email and jwt token in local storage to keep user logged in between page refreshes
-                    // this.localStorage.setItem('currentUser', JSON.stringify({
-                    //     token: 'aisdnaksjdn,axmnczm',
-                    //     isAdmin: true,
-                    //     email: 'dev.mail@infowest.com.br',
-                    //     id: '1077',
-                    //     alias: 'dev.mail@infowest.com.br'.split('@')[0],
-                    //     expiration: moment().add(1, 'days').toDate(),
-                    //     fullName: 'Reginaldo Teixeira'
-                    // }));
+    login(username: string, password: string) {
+      return this.http.post(
+        AUTH_API + 'signin',
+        {
+          username,  // Se o servidor espera um campo 'username', você pode usar o email como username
+          password,
+        },
+        httpOptions
+      ).pipe(
+        map((response) => {
+          // Você pode continuar o processamento da resposta aqui, se necessário
+          let ret = JSON.stringify(response);
+          let token = JSON.parse(ret);
+          const JSON_Obj = JSON.parse(ret);
+          if (JSON_Obj.hasOwnProperty("accessToken"))
+          {
+              let returnToken = token['accessToken'];
+              console.log("token :"+ returnToken);
+              const decodedToken = jwt_decode(returnToken);
+              var dataString = JSON.stringify(decodedToken);
+              var dataJSON = JSON.parse(dataString);
 
-                    return true;
-                }));
+              console.log('decodedToken : '+JSON.stringify({decodedToken}));
+              this.localStorage.setItem('currentUser', JSON.stringify({dataJSON}));
+ 
+              // store email and jwt token in local storage to keep user logged in between page refreshes
+              this.localStorage.setItem('currentUser', JSON.stringify({
+                    token: returnToken,
+                    isAdmin: (dataJSON['role']=="Administrator"? true:false),
+                    email: dataJSON['email'],
+                    id: dataJSON['nameid'],
+                    alias: dataJSON['email'].split('@')[0],
+                    expiration: moment().add(1, 'days').toDate(),
+                    fullName: dataJSON['name']
+              }));
+          }
+        }),
+        delay(500)  // Adicione atraso, se necessário
+      );
     }
 
     logout(): void {
@@ -44,16 +72,19 @@ export class AuthenticationService {
 
     getCurrentUser(): any {
         // TODO: Enable after implementation
-        // return JSON.parse(this.localStorage.getItem('currentUser'));
-        return {
-            token: 'aisdnaksjdn,axmnczm',
-            isAdmin: true,
-            email: 'dev.mail@infowest.com.br',
-            id: '1077',
-            alias: 'dev.mail@infowest.com.br'.split('@')[0],
-            expiration: moment().add(1, 'days').toDate(),
-            fullName: 'Reginaldo Teixeira'
-        };
+        var currentUsr = JSON.stringify(this.localStorage.getItem('currentUser'));
+        var data = JSON.parse(currentUsr);
+        return JSON.parse(data);
+        // debugger
+        // return {
+        //     token: 'aisdnaksjdn,axmnczm',
+        //     isAdmin: true,
+        //     email: 'dev.mail@infowest.com.br',
+        //     id: '1077',
+        //     alias: 'dev.mail@infowest.com.br'.split('@')[0],
+        //     expiration: moment().add(1, 'days').toDate(),
+        //     fullName: 'Reginaldo Teixeira'
+        // };
     }
 
     passwordResetRequest(email: string) {
@@ -68,3 +99,4 @@ export class AuthenticationService {
         return of(true).pipe(delay(1000));
     }
 }
+

@@ -24,3 +24,7 @@
   align-items: center;
   margin-left: 8%; /* Ajuste isso conforme necessário para o espaçamento desejado */
 }
+
+.mdc-snackbar-label {
+  text-align: center;
+}

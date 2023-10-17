@@ -10,7 +10,7 @@ import { JsonPipe } from '@angular/common';
 
 const DEV = 'https://localhost:7234/v1/account/';
 const PRD = 'https://iwcrm.azurewebsites.net//v1/account/';
-const AUTH_API = DEV;
+const AUTH_API = PRD;
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -48,7 +48,7 @@ export class AuthenticationService {
 
               console.log('decodedToken : '+JSON.stringify({decodedToken}));
               this.localStorage.setItem('currentUser', JSON.stringify({dataJSON}));
- 
+
               // store email and jwt token in local storage to keep user logged in between page refreshes
               this.localStorage.setItem('currentUser', JSON.stringify({
                     token: returnToken,

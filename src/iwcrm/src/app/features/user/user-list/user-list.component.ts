@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { NGXLogger } from 'ngx-logger';
 import { Title } from '@angular/platform-browser';
@@ -15,14 +16,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./user-list.component.css' ]
 })
 
-export class UserListComponent implements OnInit {
+export class UserListComponent implements AfterViewInit {
   [x: string]: any;
   displayedColumns: string[] = [ 'Id', 'name', 'userName','password','email','role'];
   dataSource = new MatTableDataSource<User>([]);
 
+
   @ViewChild(MatSort, { static: true })
   sort: MatSort = new MatSort;
   users: User[] = [];
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   constructor(
     private logger: NGXLogger,

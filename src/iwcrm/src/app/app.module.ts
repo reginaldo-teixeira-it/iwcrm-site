@@ -27,7 +27,7 @@ import { UserListComponent } from './features/user/user-list/user-list.component
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

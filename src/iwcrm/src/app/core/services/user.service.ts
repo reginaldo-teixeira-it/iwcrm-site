@@ -18,23 +18,9 @@ const httpOptions = {
 export class UserService {
   constructor(private http: HttpClient,
     @Inject('LOCALSTORAGE') private localStorage: Storage) {
-}
+  }
 
-getAll(): Observable<User[]> {
-  return this.http.get<User[]>(USR_API + 'get-all', httpOptions);
-}
-
-  // getAll(){
-  //   return this.http.get(
-  //     USR_API + 'get-all',
-  //     httpOptions
-  //     ).pipe(
-  //       map((response) => {
-  //         let ret = JSON.stringify(response);
-  //         console.log('Response : '+response);
-  //       }),
-  //       delay(500)
-  //   );
-  // }
-
+  getAll(): Observable<User[]> {
+    return this.http.get<User[]>(USR_API + 'get-all', httpOptions);
+  }
 }
